@@ -9,7 +9,7 @@ class x_axis(Motor):
         super(x_axis, self).__init__()
         self.sign_pin = 12
         self.pulse_pin = 16
-        self.enable_pin = 18
+        self.enable_pin = 19
         self.gpio_instance = GPIOPara(self.sign_pin, self.pulse_pin, self.enable_pin)
         self.mode = True  # true: position node, false: velocity mode
         self.position = 0  # mm
