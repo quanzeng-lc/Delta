@@ -6,7 +6,7 @@ from GPIOPara import GPIOPara
 class Motor:
     @staticmethod
     def search_device():
-        GPIOPara.gpio_set()
+        pass
 
     def open_device(self):
         pass

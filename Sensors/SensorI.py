@@ -47,3 +47,6 @@ class SensorI:
     # < / returns >
     def get_val(self):
         return self._val == 1
+
+    def clear(self):
+        self._val = -1

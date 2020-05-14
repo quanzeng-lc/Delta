@@ -4,7 +4,7 @@ import Jetson.GPIO as GPIO
 import time as time
 
 
-class GPIOPara():
+class GPIOPara:
     def __init__(self, sign_pin, pulse_pin, enable_pin):
         self.sign_pin = 0
         self.pulse_pin = 0
@@ -29,6 +29,25 @@ class GPIOPara():
     # change the pulse pin level
     def change_level(self, direction, pulse_num, peroid):
         if pulse_num > 0 and peroid > 0:
+            pass
+        else:
+            return
+        if direction:
+            GPIO.output(self.sign_pin, GPIO.LOW) # Low:Forward  HIGH:backward
+        else:
+            GPIO.output(self.sign_pin, GPIO.HIGH) # Low:Forward  HIGH:backward
+        count = 0
+        while count <= pulse_num-1:
+            time.sleep(peroid)
+            self.set_pulse_high()
+            time.sleep(peroid)
+            self.set_pulse_low()
+            count = count + 1
+        self.set_pulse_high()
+        # print("1")
+
+    def change_level(self, direction, peroid):
+        if peroid > 0:
             pass
         else:
             return

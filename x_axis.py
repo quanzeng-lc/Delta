@@ -11,10 +11,13 @@ class x_axis(Motor):
         self.pulse_pin = 16
         self.enable_pin = 19
         self.gpio_instance = GPIOPara(self.sign_pin, self.pulse_pin, self.enable_pin)
-        self.mode = True  # true: position node, false: velocity mode
         self.position = 0  # mm
         self.velocity = 0  # mm/s
         self.gear_ratio = 1
+        self.home = False
+
+        self.move_mode = 0  # 0:velocity 1:position
+        # velocity mode
 
     def open_device(self):
         self.gpio_instance.set_pulse_pin()
@@ -22,6 +25,7 @@ class x_axis(Motor):
     def close_device(self):
         self.gpio_instance.free_pulse_pin()
 
+    # set motor enable
     def enable_on(self):
         self.gpio_instance.set_enable_high()
 
@@ -29,7 +33,7 @@ class x_axis(Motor):
         self.gpio_instance.set_enable_low()
 
     def set_mode(self, mode):
-        self.mode = mode
+        self.move_mode = mode
 
     def set_gear_ratio(self, ratio):
         if ratio <= 0:
@@ -49,4 +53,10 @@ class x_axis(Motor):
         self.velocity = velocity  # mm/s
 
     def velocity_start_move(self):
+        pass
+
+    def positon_start_move(self):
+        pass
+
+    def go_home(self):
         pass

@@ -8,42 +8,13 @@ class SensorType(Enum):
     High = 2  # 高电平
 
 class SensorO:
-
     #public delegate void SensorEventHandler(object param)
-
-    #private Dictionary < SensorEventHandler, object > SensorLowEvent
-    #private Dictionary < SensorEventHandler, object > SensorHighEvent
     def __init__(self, no):
         self.no = no
         self._val = -1
         self._set = -1
         self._type = -1
         self.lock = threading.RLock()
-        #SensorLowEvent = new
-        #Dictionary < SensorEventHandler, object > ()
-        #SensorHighEvent = new
-        #Dictionary < SensorEventHandler, object > ()
-
-    #public void RegistEventHandler(SensorType type, SensorEventHandler ev, object param)
-        # lock(locker)
-        # switch(type):
-        # case SensorType.Low: \
-        # SensorLowEvent[ev] = param;
-        # break
-        # case SensorType.High:
-        # SensorHighEvent[ev] = param
-        # break
-        # default: break
-
-    # def cancel_event_handler(self, type, ev):
-    #     lock(locker)
-    #     switch(type):
-    #     case SensorType.Low: SensorLowEvent.Remove(ev)
-    #     break
-    #     case SensorType.High: SensorHighEvent.Remove(ev);
-    #     break
-    #     default:
-    #     break
 
     # < summary >
     # 更新传感器状态
