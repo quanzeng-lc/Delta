@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding:utf-8 -*-
 import Jetson.GPIO as GPIO
-import time as time
+import time
+import threading
 
 
 class GPIOPara:
@@ -26,45 +27,6 @@ class GPIOPara:
         GPIO.setmode(GPIO.BOARD)
         GPIO.setwarnings(False)
 
-    # change the pulse pin level
-    def change_level(self, direction, pulse_num, peroid):
-        if pulse_num > 0 and peroid > 0:
-            pass
-        else:
-            return
-        if direction:
-            GPIO.output(self.sign_pin, GPIO.LOW) # Low:Forward  HIGH:backward
-        else:
-            GPIO.output(self.sign_pin, GPIO.HIGH) # Low:Forward  HIGH:backward
-        count = 0
-        while count <= pulse_num-1:
-            time.sleep(peroid)
-            self.set_pulse_high()
-            time.sleep(peroid)
-            self.set_pulse_low()
-            count = count + 1
-        self.set_pulse_high()
-        # print("1")
-
-    def change_level(self, direction, peroid):
-        if peroid > 0:
-            pass
-        else:
-            return
-        if direction:
-            GPIO.output(self.sign_pin, GPIO.LOW) # Low:Forward  HIGH:backward
-        else:
-            GPIO.output(self.sign_pin, GPIO.HIGH) # Low:Forward  HIGH:backward
-        count = 0
-        while count <= pulse_num-1:
-            time.sleep(peroid)
-            self.set_pulse_high()
-            time.sleep(peroid)
-            self.set_pulse_low()
-            count = count + 1
-        self.set_pulse_high()
-        # print("1")
-
     #################################################
     # set the sign pin
     def set_sign_pin_num(self, sign_pin):
@@ -74,10 +36,13 @@ class GPIOPara:
     def set_pulse_pin_num(self, pulse_pin):
         self.pulse_pin = pulse_pin
 
+    def set_enable_pin_num(self, enable_pin):
+        self.enable_pin = enable_pin
+
     ##################################################
     # set the pulse pin relative high
     def set_sign_high(self):
-        GPIO.output(self.pulse_pin, GPIO.LOW)
+        GPIO.output(self.sign_pin, GPIO.LOW)
 
     # set the pulse pin relative low
     def set_sign_low(self):
@@ -97,7 +62,7 @@ class GPIOPara:
     def set_enable_low(self):
         GPIO.output(self.enable_pin, GPIO.LOW)
 
-##################################################
+    ##################################################
     # set the pin input
     def set_pin_input(self, pin):
         GPIO.setup(pin, GPIO.IN)
@@ -106,7 +71,7 @@ class GPIOPara:
     def set_pin_output(self, pin):
         GPIO.setup(pin, GPIO.OUT)
 
-##################################################
+    ##################################################
     # set the sign output
     def set_sign_pin(self):
         self.set_pin_output(self.sign_pin)
@@ -118,7 +83,7 @@ class GPIOPara:
     def set_enable_pin(self):
         self.set_pin_output(self.enable_pin)
 
-##################################################
+    ##################################################
     # the pin works only when the pin is output; free the sign pin
     def free_sign_pin(self):
         self.set_pin_input(self.sign_pin)
