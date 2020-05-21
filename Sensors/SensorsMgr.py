@@ -121,7 +121,7 @@ class SensorsMgr:
     def work_method_o(self):
         while True:
             if self.started:
-                self.get_jetson_o()
+                #self.get_jetson_o()
             # for (int i = 0; i < O_SIZE; i++)
             #     IO_OUT[i].DoWork()
                 time.sleep(0.01)
