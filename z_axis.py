@@ -10,7 +10,7 @@ class x_axis(Motor):
         super(x_axis, self).__init__()
         self.sign_pin = 32
         self.pulse_pin = 33
-        self.enable_pin = 37
+        self.enable_pin = 38
         self.gpio_instance = GPIOPara(self.sign_pin, self.pulse_pin, self.enable_pin)
         
         self.home = False
@@ -280,3 +280,4 @@ while True:
     else:
         break
 x_axis_motor.stop()
+x_axis_motor.enable_off()

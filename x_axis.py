@@ -280,4 +280,4 @@ while True:
     else:
         break
 x_axis_motor.stop()
-#x_axis_motor.enable_off()
+x_axis_motor.enable_off()

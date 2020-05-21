@@ -53,7 +53,10 @@ class SensorO:
         if self._type == SensorType.Low:
             #  foreach(var item in SensorLowEvent):
             #  item.Key(item.Value)
+            pass
         elif self._type == SensorType.High:
+
+            pass
             #  foreach (var item in SensorHighEvent)
             #  item.Key(item.Value)
 
